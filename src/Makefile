@@ -22,13 +22,15 @@ LIBCONFIGFLAGS = $(shell pkg-config --cflags libconfig)
 LIBCONFIGLIBS = $(shell pkg-config --libs libconfig)
 LIBSOUPFLAGS = $(shell pkg-config --cflags libsoup-2.4)
 LIBSOUPLIBS = $(shell pkg-config --libs libsoup-2.4)
+LIBSECRETFLAGS =$(shell pkg-config --libs libsecret-1)
+LIBSECRETLIBS =$(shell pkg-config --libs libsecret-1)
 
 CFLAGS += -std=gnu99 -O2 -Wall -Iinc -Wno-deprecated-declarations \
 		  $(DEFS) $(GTK3FLAGS) $(LIBIRCCLINETFLAGS) \
-		  $(LIBCONFIGFLAGS) $(LIBSOUPFLAGS) $(DBGFLAGS)
+		  $(LIBCONFIGFLAGS) $(LIBSOUPFLAGS) $(LIBSECRETFLAGS) $(DBGFLAGS)
 
 LDFLAGS += $(GTK3LIBS) $(LIBIRCCLINETLIBS) \
-		   $(LIBCONFIGLIBS) $(LIBSOUPLIBS) $(DBGFLAGS)
+		   $(LIBCONFIGLIBS) $(LIBSOUPLIBS) $(LIBSECRETLIBS) $(DBGFLAGS)
 
 SRCS = $(wildcard *.c */*.c $(BUILD_DIR)/resources.c)
 OBJS = $(patsubst %.c, $(BUILD_DIR)/%.o, $(notdir $(SRCS)))
